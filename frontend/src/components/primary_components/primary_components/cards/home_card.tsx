@@ -8,8 +8,6 @@ interface DataCardProps {
 export default function HomeCard({
   image,
   title,
-
-  id,
 }: DataCardProps) {
   return (
     <motion.div

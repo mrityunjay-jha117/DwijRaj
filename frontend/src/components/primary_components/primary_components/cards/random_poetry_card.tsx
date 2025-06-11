@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence, useSpring } from "framer-motion";
+import { motion} from "framer-motion";
 
 type DwijPoem = {
   title: string;
@@ -13,9 +13,6 @@ export default function PoetryCard() {
   const [isHovered, setIsHovered] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
 
-  // Smooth spring animation config
-  const springConfig = { stiffness: 100, damping: 15, mass: 0.5 };
-  const scaleSpring = useSpring(1, springConfig);
 
   useEffect(() => {
     async function fetchPoem() {

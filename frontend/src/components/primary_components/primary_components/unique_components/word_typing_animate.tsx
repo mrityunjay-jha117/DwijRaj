@@ -5,8 +5,8 @@ interface AnimatedTextSequenceProps {
   typingSpeed?: number; // milliseconds per character (default 100)
   fadeDelay?: number; // delay after finishing typing (default 500)
   fadeDuration?: number; // fade/explosion duration (default 500)
-  wordsize?:string;
-  color?:string;
+  wordsize?: string;
+  color?: string;
 }
 
 interface Offset {
@@ -21,8 +21,8 @@ const TypingEffect: React.FC<AnimatedTextSequenceProps> = ({
   typingSpeed = 40,
   fadeDelay = 350,
   fadeDuration = 2000,
-  wordsize="text-sm",
-  color="text-gray-500"
+  wordsize = "text-sm",
+  color = "text-gray-500",
 }) => {
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
   const [currentCharIndex, setCurrentCharIndex] = useState(0);
@@ -81,10 +81,12 @@ const TypingEffect: React.FC<AnimatedTextSequenceProps> = ({
 
   return (
     <div className="h-full p-2 w-full">
-      <div className={`${color} break-normal whitespace-pre-wrap  w-full max-w-full`}>
+      <div
+        className={`${color} break-normal whitespace-pre-wrap  w-full max-w-full`}
+      >
         {Array.from(currentText).map((char, index) => {
           if (index >= currentCharIndex) return <span key={index}></span>;
-  
+
           const style =
             phase === "exploding" && explodeOffsets[index]
               ? {
@@ -93,9 +95,13 @@ const TypingEffect: React.FC<AnimatedTextSequenceProps> = ({
                   transform: `translate(${explodeOffsets[index].x}px, ${explodeOffsets[index].y}px) scale(0.2)`,
                 }
               : {};
-  
+
           return (
-            <span key={index} style={style} className={`${wordsize} inline-block`}>
+            <span
+              key={index}
+              style={style}
+              className={`${wordsize} inline-block`}
+            >
               {char === " " ? "\u00A0" : char}
             </span>
           );
@@ -103,7 +109,6 @@ const TypingEffect: React.FC<AnimatedTextSequenceProps> = ({
       </div>
     </div>
   );
-  
 };
 
 export default TypingEffect;
